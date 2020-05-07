@@ -1,12 +1,16 @@
 
 
 ## Wprowadzenie
+W jednym z projektÃ³w miaÅ‚em sytuacjÄ™, Å¼e edycja danych polegaÅ‚a na modyfikacji pojedynczego pola.
+ChciaÅ‚em uniknÄ…Ä‡ przesyÅ‚ania caÅ‚ego obiektu w json, a zamiast tego przesyÅ‚aÄ‡ tylko nazwÄ™ i wartoÅ›Ä‡ pojedynczego pola:
 
-W jednym z projektów potrzebowa³em ustawienia wartoœci w³aœciwoœci w sposób dynamiczny, czyli nazwa pola by³a zmienn¹.
+~~~
+{"FirstName":"John"}
+~~~
 
-Zainspirowany konstrukcj¹ z jêzyka Javascript postanowi³em zaimplementowaæ to w C#
+Zainspirowany konstrukcjÄ… z jÄ™zyka Javascript postanowiÅ‚em zaimplementowaÄ‡ to w C#
 
-Czyli zamiast pisaæ:
+Czyli zamiast pisaÄ‡:
 
 ~~~ csharp
 customer.FirstName = "John";
@@ -14,7 +18,7 @@ customer.FirstName = "John";
 Console.WriteLine(customer.FirstName);
 ~~~
 
-chcia³em uzyskaæ coœ takiego:
+chciaÅ‚em uzyskaÄ‡ coÅ› takiego:
 
 ~~~ csharp
 
@@ -24,9 +28,9 @@ Console.WriteLine(customer["FirstName"]);
 
 ~~~
 
-## Rozwi¹zanie z u¿yciem System.Reflection
+## RozwiÄ…zanie z uÅ¼yciem System.Reflection
 
-Utworzy³em w³asny indekser i u¿y³em refleksji.
+UtworzyÅ‚em wÅ‚asny indekser i uÅ¼yÅ‚em refleksji.
 
 ~~~ csharp
 public class Customer
@@ -44,9 +48,9 @@ public class Customer
 ~~~
 
 
-## Rozwi¹zanie z u¿yciem FastMember
+## RozwiÄ…zanie z uÅ¼yciem FastMember
 
-Utworzy³em w³asny indekser i u¿y³em biblioteki **FastMember**.
+UtworzyÅ‚em wÅ‚asny indekser i uÅ¼yÅ‚em biblioteki **FastMember**.
 
 ~~~
  dotnet add package FastMember
@@ -79,7 +83,7 @@ Utworzy³em w³asny indekser i u¿y³em biblioteki **FastMember**.
 
 ## Benchmarks
 
-Porównanie rozwi¹zañ:
+PorÃ³wnanie rozwiÄ…zaÅ„:
 
 
 |     Method |      Mean |    Error |    StdDev | Rank |
@@ -89,4 +93,4 @@ Porównanie rozwi¹zañ:
 
 ## Podsumowanie
 
-Jak widaæ zwyciezc¹ zosta³ FastMember i takie rozwi¹zanie polecam.
+Jak widaÄ‡ zwyciezcÄ… zostaÅ‚ FastMember i takie rozwiÄ…zanie polecam.
