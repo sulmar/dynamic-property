@@ -6,7 +6,7 @@ using System.Text;
 namespace DynamicProperty.FastMemberTest
 {
     // dotnet add package FastMember
-    public class Customer
+    public class CustomerObjectAccessor
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -14,7 +14,7 @@ namespace DynamicProperty.FastMemberTest
 
         private readonly ObjectAccessor wrapper;
 
-        public Customer()
+        public CustomerObjectAccessor()
         {
             wrapper = ObjectAccessor.Create(this);
         }

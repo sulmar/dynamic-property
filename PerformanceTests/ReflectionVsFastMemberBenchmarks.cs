@@ -19,9 +19,16 @@ namespace DynamicProperty.PerformanceTests
         }
 
         [Benchmark]
-        public void FastMember()
+        public void FastMemberObjectAccessor()
         {
-            FastMemberTest.Customer customer = new FastMemberTest.Customer();
+            FastMemberTest.CustomerObjectAccessor customer = new FastMemberTest.CustomerObjectAccessor();
+            customer["FirstName"] = "John";
+        }
+
+        [Benchmark]
+        public void FastMemberTypeAccessor()
+        {
+            FastMemberTest.CustomerTypeAccessor customer = new FastMemberTest.CustomerTypeAccessor();
             customer["FirstName"] = "John";
         }
     }

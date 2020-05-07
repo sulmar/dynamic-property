@@ -8,6 +8,8 @@ namespace DynamicProperty
     {
         static void Main(string[] args)
         {
+
+            Console.WriteLine("dotnet run -c Release");
             var summary = BenchmarkRunner.Run<ReflectionVsFastMemberBenchmarks>();
         }
     }

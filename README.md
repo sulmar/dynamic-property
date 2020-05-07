@@ -52,6 +52,8 @@ Utworzy³em w³asny indekser i u¿y³em biblioteki **FastMember**.
  dotnet add package FastMember
 ~~~
 
+
+### ObjectAccessor
 ~~~ csharp
 
   public class Customer
@@ -77,16 +79,43 @@ Utworzy³em w³asny indekser i u¿y³em biblioteki **FastMember**.
 ~~~
 
 
+### TypeAccessor
+
+~~~ csharp
+
+ public class Customer
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+
+        private readonly TypeAccessor accessor;
+
+        public Customer()
+        {
+            accessor = TypeAccessor.Create(GetType());
+        }
+
+        public object this[string propertyName]
+        {
+            get => accessor[this, propertyName];
+            set => accessor[this, propertyName] = value;
+        }
+    }
+
+~~~
+
 ## Benchmarks
 
 Porównanie rozwi¹zañ:
 
 
-|     Method |      Mean |    Error |    StdDev | Rank |
-|----------- |----------:|---------:|----------:|-----:|
-| FastMember |  88.34 ns | 1.720 ns |  1.841 ns |    1 |
-| Reflection | 250.50 ns | 5.008 ns | 11.097 ns |    2 |
+|                   Method |      Mean |    Error |   StdDev | Rank |
+|------------------------- |----------:|---------:|---------:|-----:|
+|   FastMemberTypeAccessor |  62.96 ns | 0.927 ns | 0.822 ns |    1 |
+| FastMemberObjectAccessor |  82.74 ns | 1.141 ns | 1.068 ns |    2 |
+|               Reflection | 243.04 ns | 4.884 ns | 8.294 ns |    3 |
 
 ## Podsumowanie
 
-Jak widaæ zwyciezc¹ zosta³ FastMember i takie rozwi¹zanie polecam.
+Jak widaæ zwyciezc¹ zosta³ FastMember, zw³aszcza metoda FastMemberTypeAccessor i takie rozwi¹zanie polecam.
